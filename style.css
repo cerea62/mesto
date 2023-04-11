@@ -1,2 +1,71 @@
+.elements {
+    max-width: 880px;
+    width: 100%;
+    margin: 50px auto 0;
 
+}
 
+.elements__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 17px;
+    row-gap: 20px;
+    padding: 0;
+    list-style: none;
+}
+/* @media screen and (max-width: 700px) {
+    .elements__items {
+        margin-left: 19px;
+        margin-right: 19px;
+    }
+    
+} */
+.element {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+.element__image {
+    width: 282px;
+    height: 282px;
+    object-fit: cover;
+}
+
+.element__title {
+    margin: 0;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 1.21;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 200px;
+}
+
+.element__caption {
+    display: flex;
+    
+    justify-content: space-between;
+    margin: 25px 15px 31px 21px;
+
+}
+
+.element__icon {
+    background-image: url(./image/heart.svg);
+    background-color: #fff;
+    width: 22px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+
+}
+
+.element__icon_active {
+    background-image: url(./image/heart_active.svg);
+}

@@ -1,0 +1,20 @@
+.popup__items {
+    position: fixed;
+    left: 50%;
+    padding: 34px 36px 37px;
+    max-width: 358px;
+    width: 100%;
+    margin-left: -210px;
+    background: #fff;
+    border-radius: 10px;
+    z-index: 99999;
+    opacity: 1;
+}
+
+@media screen and (max-width: 600px) {
+    .popup__items {
+        width: 238px;
+        padding: 25px 22px;
+        margin-left: -140px;
+    }
+}

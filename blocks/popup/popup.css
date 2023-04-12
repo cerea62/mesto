@@ -1,6 +1,6 @@
-/* .popup {
+.popup {
 	display: none;
-} */
+}
 .popup:before {
     content: '';
     background: #000;

@@ -1,27 +1,27 @@
 // открытие и закрытие окна попапа
-let popup = document.querySelector('.popup'); //окно попапа
-let editButton = document.querySelector('.profile__edit-button'); //кнопка редактирования
-let closeButton = document.querySelector('.popup__close'); //кнопка закрытия
-let saveButton = document.querySelector('.popup__save');
+const popupElement = document.querySelector('.popup'); //окно попапа
+const editButtonProfileElement = document.querySelector('.profile__edit-button'); //кнопка редактирования
+const closeButtonPopupElement = popupElement.querySelector('.popup__close'); //кнопка закрытия
+const saveButtonPopupElement = popupElement.querySelector('.popup__save');
 
 function openPopup() { //функция открытия попапа
-    popup.classList.add('popup_opened');
+    popupElement.classList.add('popup_opened');
 };
 function closePopup() { //функция закрытия попапа
-    popup.classList.remove('popup_opened');
+    popupElement.classList.remove('popup_opened');
 };
 
-editButton.addEventListener('click', openPopup);
-closeButton.addEventListener('click', closePopup);
-saveButton.addEventListener('click', closePopup);
+editButtonProfileElement.addEventListener('click', openPopup);
+closeButtonPopupElement.addEventListener('click', closePopup);
+saveButtonPopupElement.addEventListener('click', closePopup);
 
 //редактирование профиля
 
-let formElement = document.querySelector('.popup__form'); 
-let nameInput = formElement.querySelector('.popup__field_name');
-let jobInput = formElement.querySelector('.popup__field_job');
-let profileName = document.querySelector('.profile__name');
-let profileCaption = document.querySelector('.profile__caption');
+const formElement = document.querySelector('.popup__form'); 
+const nameInput = formElement.querySelector('.popup__field_name');
+const jobInput = formElement.querySelector('.popup__field_job');
+const profileName = document.querySelector('.profile__name');
+const profileCaption = document.querySelector('.profile__caption');
 
 function handleFormSubmit (evt) { //обработчик формы отправки, пока не работает
     evt.preventDefault(); 
@@ -34,4 +34,4 @@ function editName() { //перезаписывает поля в форме
  profileCaption.textContent = jobInput.value
 }
 formElement.addEventListener('submit', handleFormSubmit);
-saveButton.addEventListener('click', editName); 
+saveButtonPopupElement.addEventListener('click', editName); 

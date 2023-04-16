@@ -1,5 +1,5 @@
 @import url(../vendor/normalize.css);
-@import url(../fonts/inter.css);
+@import url(../vendor/fonts/inter.css);
 @import url(../blocks/content/content.css);
 @import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
@@ -32,3 +32,5 @@
 @import url(../blocks/card/__icon/_active/card__icon_active.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+@import url(../blocks/form/__field/form__field.css);
+@import url(../blocks/form/__button-save/form__button-save.css);

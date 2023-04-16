@@ -4,43 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesto</title>
+    <meta mame="keywords" content="Места, путешествие, Россия">
+    <meta name="author" content="Наталья Кузнецова">
+    <title lang="en">Mesto</title>
     <link rel="stylesheet" href="./pages/index.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="content">
     <div class="page">
         <header class="header">
             <img class="header__logo" src="./image/logo.svg" alt="Логотип Место">
-            <hr class="header__line">
         </header>
         <main class="container">
-            <div class="popup">
-                <div class="popup__items">
-                    <div class="popup__container">
-                        <a class="popup__close" src="./image/Close-Icon.svg" alt="Кнопка закрытия окна редактирования"></a>
-                        <h2 class="popup__title">Редактировать профиль</h2>
-                        <form class="popup__form">
-                            <input type="text" value="Жак-Ив Кусто" name="Имя" class="popup__field popup__field_name">
-                            <input type="text" value="Исследователь океана" name="Профессия" class="popup__field popup__field_job">
-                        </form>
-                        <button role="button" class="popup__save">Сохранить</button>
-                    </div>
-                </div>
-            </div>
             <section class="profile">
                 <div class="profile__items">
                     <img class="profile__avatar" src="./image/cousteau.jpg" alt="Аватар автора">
                     <div class="profile__info">
                         <div class="profile__edit">
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
-                            <button role="button" class="profile__edit-button"></button>
+                            <button type="button" class="profile__edit-button"></button>
                         </div>
                         <p class="profile__caption">Исследователь океана</p>
                     </div>
                 </div>
-                <button role="button" class="profile__add-button"></button>
+                <button type="button" class="profile__add-button"></button>
 
             </section>
             <section class="elements">
@@ -49,7 +36,8 @@
                         <img class="card__image" src="./image/card/ai-petri.jpg" alt="Гора Ай-Петри в Ялте">
                         <div class="card__caption">
                             <h2 class="card__title">Гора Ай-Петри</h2>
-                            <a class="card__icon" href="#"></a>
+                            <button type="button" class="card__icon" aria-label="Иконка-сердечко"
+                                title="Добавить в избранное"></button>
                         </div>
                     </li>
                     <li class="card">
@@ -57,14 +45,16 @@
                             alt="Озеро Байкал в солнечный летний день">
                         <div class="card__caption">
                             <h2 class="card__title">Озеро Байкал</h2>
-                            <a class="card__icon" href="#"></a>
+                            <button type="button" class="card__icon" aria-label="Иконка-сердечко"
+                                title="Добавить в избранное"></button>
                         </div>
                     </li>
                     <li class="card">
                         <img class="card__image" src="./image/card/dagestan.jpg" alt="Песчанные дюны в Дагестане">
                         <div class="card__caption">
                             <h2 class="card__title">Дагестан</h2>
-                            <a class="card__icon" href="#"></a>
+                            <button type="button" class="card__icon" aria-label="Иконка-сердечко"
+                                title="Добавить в избранное"></button>
                         </div>
                     </li>
                     <li class="card">
@@ -72,14 +62,16 @@
                             alt="Солнечные лучи на снежной шапке горы Эльбрус">
                         <div class="card__caption">
                             <h2 class="card__title">Гора Эльбрус</h2>
-                            <a class="card__icon" href="#"></a>
+                            <button type="button" class="card__icon" aria-label="Иконка-сердечко"
+                                title="Добавить в избранное"></button>
                         </div>
                     </li>
                     <li class="card">
                         <img class="card__image" src="./image/card/krim.jpg" alt="Скалистый берег Крыма">
                         <div class="card__caption">
                             <h2 class="card__title">Крым</h2>
-                            <a class="card__icon" href="#"></a>
+                            <button type="button" class="card__icon" aria-label="Иконка-сердечко"
+                                title="Добавить в избранное"></button>
                         </div>
                     </li>
                     <li class="card">
@@ -87,7 +79,8 @@
                             alt="Сосновый лес Карелии в закатном солнце на берегу озера">
                         <div class="card__caption">
                             <h2 class="card__title">Суоярви, Карелия</h2>
-                            <a class="card__icon" href="#"></a>
+                            <button type="button" class="card__icon" aria-label="Иконка-сердечко"
+                                title="Добавить в избранное"></button>
                         </div>
                     </li>
                 </ul>
@@ -98,9 +91,19 @@
         <footer class="footer">
             <p class="footer__copyright">&#127279; 2020 Mesto Russia</p>
         </footer>
-
+        <div class="popup">
+            <div class="popup__container">
+                <button type="button" class="popup__close"></button>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <form class="form" name="form-popup">
+                    <input type="text" value="Жак-Ив Кусто" name="name" class="form__field form__field_type_name">
+                    <input type="text" value="Исследователь океана" name="job" class="form__field form__field_type_job">
+                    <button type="submit" class="form__button-save">Сохранить</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <script src="script.js" defer></script>
+    <script src="./scripts/script.js" defer></script>
 </body>
 
 

@@ -9,9 +9,9 @@
     overflow: hidden;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 720px) {
     .profile__caption {
-        margin-top: 14px;
+        margin-top: 7px;
         font-size: 14px;
         text-align: center;
     }

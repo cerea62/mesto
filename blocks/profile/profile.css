@@ -4,7 +4,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 40px auto 0;
+    margin: 37px auto 0;
+
 }
 
 @media screen and (max-width: 935px) {
@@ -15,11 +16,9 @@
     }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 720px) {
     .profile {
-        margin-top: 42px;
+        margin: 42px auto 0;
         flex-direction: column;
-        margin-left: 19px;
-        margin-right: 19px;
     }
 }

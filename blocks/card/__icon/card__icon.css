@@ -1,6 +1,7 @@
 .card__icon {
     background-image: url(../../../image/heart.svg);
     background-color: #fff;
+    border: none;
     width: 22px;
     background-repeat: no-repeat;
     background-position: center;

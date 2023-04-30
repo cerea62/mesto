@@ -32,57 +32,7 @@
             </section>
             <section class="elements">
                 <ul class="elements__items">
-                    <li class="card">
-                        <img class="card__image" src="./image/card/ai-petri.jpg" alt="Гора Ай-Петри в Ялте">
-                        <div class="card__caption">
-                            <h2 class="card__title">Гора Ай-Петри</h2>
-                            <button type="button" class="card__icon" aria-label="Иконка-сердечко"
-                                title="Добавить в избранное"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__image" src="./image/card/baikal.jpg"
-                            alt="Озеро Байкал в солнечный летний день">
-                        <div class="card__caption">
-                            <h2 class="card__title">Озеро Байкал</h2>
-                            <button type="button" class="card__icon" aria-label="Иконка-сердечко"
-                                title="Добавить в избранное"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__image" src="./image/card/dagestan.jpg" alt="Песчанные дюны в Дагестане">
-                        <div class="card__caption">
-                            <h2 class="card__title">Дагестан</h2>
-                            <button type="button" class="card__icon" aria-label="Иконка-сердечко"
-                                title="Добавить в избранное"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__image" src="./image/card/elbrus.jpg"
-                            alt="Солнечные лучи на снежной шапке горы Эльбрус">
-                        <div class="card__caption">
-                            <h2 class="card__title">Гора Эльбрус</h2>
-                            <button type="button" class="card__icon" aria-label="Иконка-сердечко"
-                                title="Добавить в избранное"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__image" src="./image/card/krim.jpg" alt="Скалистый берег Крыма">
-                        <div class="card__caption">
-                            <h2 class="card__title">Крым</h2>
-                            <button type="button" class="card__icon" aria-label="Иконка-сердечко"
-                                title="Добавить в избранное"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img class="card__image" src="./image/card/suoyarvi.jpg"
-                            alt="Сосновый лес Карелии в закатном солнце на берегу озера">
-                        <div class="card__caption">
-                            <h2 class="card__title">Суоярви, Карелия</h2>
-                            <button type="button" class="card__icon" aria-label="Иконка-сердечко"
-                                title="Добавить в избранное"></button>
-                        </div>
-                    </li>
+
                 </ul>
 
             </section>
@@ -91,31 +41,52 @@
         <footer class="footer">
             <p class="footer__copyright">&#127279; 2020 Mesto Russia</p>
         </footer>
-        <div class="popup popup_box_edit-profile">
+        <template id="card-template">
+            <li class="card">
+                <button type="button" class="card__trash"></button>
+                <img class="card__image" src="">
+                <div class="card__caption">
+                    <h2 class="card__title"></h2>
+                    <button type="button" class="card__icon" aria-label="Иконка-сердечко"
+                        title="Добавить в избранное"></button>
+                </div>
+            </li>
+        </template>
+        <div class="popup popup_type_edit-profile">
             <div class="popup__container">
-                <button type="button" class="popup__close popup__close_box_edit-profile"></button>
+                <button type="button" class="popup__close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="form" name="form-popup">
+                <form class="form form_type_edit-profile" name="form-popup">
                     <input type="text" value="Жак-Ив Кусто" name="name" class="form__field form__field_type_name">
                     <input type="text" value="Исследователь океана" name="job" class="form__field form__field_type_job">
                     <button type="submit" class="form__button-save">Сохранить</button>
                 </form>
             </div>
         </div>
-        <div class="popup popup_box_new-place">
+        <div class="popup popup_type_new-card">
             <div class="popup__container">
-                <button type="button" class="popup__close popup__close_box_new-place"></button>
+                <button type="button" class="popup__close"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <form class="form" name="form-popup">
-                    <input type="text" placeholder="Название" name="name" class="form__field form__field_type_name">
-                    <input type="text" placeholder="Ссылка на картинку" name="job" class="form__field form__field_type_job">
+                <form class="form form_type_new-card" name="form-popup">
+                    <input type="text" placeholder="Название" name="place" class="form__field form__field_type_place">
+                    <input type="url" src="" placeholder="Ссылка на картинку" name="link"
+                        class="form__field form__field_type_link">
                     <button type="submit" class="form__button-save">Сохранить</button>
                 </form>
             </div>
         </div>
+        <div class="popup popup_type_image">
+            <div class="popup__img">
+                <button type="button" class="popup__close popup__close_type_image"></button>
+                <figure>
+                    <img class="popup__image" src="">
+                    <figcaption class="popup__image-caption"></figcaption>
+                </figure>
+            </div>
+        </div>
     </div>
+
     <script src="./scripts/script.js" defer></script>
 </body>
-
 
 </html>

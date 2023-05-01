@@ -49,6 +49,7 @@ const createCardElement = function(item) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     cardElement.querySelector('.card__title').textContent = item.name;
     cardElement.querySelector('.card__image').src = item.link;
+    cardElement.querySelector('.card__image').alt = item.name;
 // удаление карточки
     cardElement.querySelector('.card__trash').addEventListener('click', () => {
         cardElement.remove();

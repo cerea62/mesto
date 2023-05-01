@@ -1,0 +1,7 @@
+.popup__img {
+    position: fixed;
+    z-index: 3;
+    opacity: 1;
+    justify-self: center;
+    align-self: center;
+}

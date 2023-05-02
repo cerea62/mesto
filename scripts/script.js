@@ -1,5 +1,4 @@
 //объявление переменных
-const content = document.querySelector('.content');
 const popupProfileElement = document.querySelector('.popup_type_edit-profile'); //окно попапа редактирования профиля
 const popupNewCardElement = document.querySelector('.popup_type_new-card'); //окно попапа добавления нового места
 const popupImageContainer = document.querySelector('.popup_type_image'); //модальное окно с изображением
@@ -43,7 +42,6 @@ const createCardElement = function (item) {
         popupImageContainer.classList.add('popup_opened');
     });
     return cardElement;
-
 }
 
 const renderCardElement = (item) => {
@@ -110,7 +108,6 @@ newCardAddButtonElement.addEventListener('click', () =>
     openPopup(popupNewCardElement));
 
 formEditProfileElement.addEventListener('submit', handleFormSubmit);
-
 formNewCardElement.addEventListener('submit', handleFormSubmitadd);
 
 

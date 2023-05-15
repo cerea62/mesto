@@ -63,6 +63,8 @@ function openPopup(modal) {
 
 //функция закрытия Popup
 function closePopup(modal) {
+    modal.removeEventListener('keydown', setEventClosePopup);
+    modal.removeEventListener('click', setEventClosePopup);
     modal.classList.remove('popup_opened');
 };
 
@@ -83,19 +85,31 @@ document.querySelectorAll('.popup__close').forEach(button => {
 
 // функция закрытия модальных окон при клике на фон и esc
 function closePopupByClickOnOverlay(item) {
-    item.addEventListener('click', function (evt) {
-        if (evt.target === evt.currentTarget) {
-            closePopup(item);
-        }
+    item.addEventListener('click', function (e) {
+        setEventClosePopup(e, item, 'click');
     });
+}
+
+function setEventClosePopup(e, item, typeEvent) {
+    switch (typeEvent) {
+        case 'keydown': {
+            if (e.key === 'Escape') {
+                closePopup(item);
+            }
+        }
+        case 'click': {
+            if (e.target === e.currentTarget) {
+                closePopup(item);
+            }
+        }
+    }
 }
 
 function closePopupByClickOnEsc(item) {
     document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            closePopup(item);
-        }
-    });
+        setEventClosePopup(e, item, 'keydown');
+    }
+    );
 }
 
 function getFormValuesAdd() {

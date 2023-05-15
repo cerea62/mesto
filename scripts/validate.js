@@ -71,5 +71,4 @@ const configFormSelector = {
     errorInputClass: 'form__field_status_invalid'
 }
 
-
 enableValidation(configFormSelector)

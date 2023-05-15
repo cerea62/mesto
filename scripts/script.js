@@ -16,6 +16,8 @@ const elementsContainer = document.querySelector('.elements__items'); //нахо
 const cardTemplate = document.querySelector('#card-template').content; //находим шаблон по его id
 const popupImageElement = popupImageContainer.querySelector('.popup__image');
 const popupImageCaptionElement = popupImageContainer.querySelector('.popup__image-caption');
+const buttonSaveProfileElement = popupProfileElement.querySelector('.form__button-save');
+
 //создание карточки
 const createCardElement = function (item) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -23,27 +25,35 @@ const createCardElement = function (item) {
     cardElement.querySelector('.card__title').textContent = item.name;
     cardImageElement.src = item.link;
     cardImageElement.alt = item.name;
-// удаление карточки
+    // удаление карточки
     cardElement.querySelector('.card__trash').addEventListener('click', () => {
         cardElement.remove();
     });
-// добавить в избранное
+    // добавить в избранное
     cardElement.querySelector('.card__icon').addEventListener('click', function (evt) {
         evt.target.classList.toggle('card__icon_active');
     });
-// открыть изображение
+    // открыть изображение
     cardElement.querySelector('.card__image').addEventListener('click', function (evt) {
         popupImageElement.src = item.link;
         popupImageElement.alt = item.name;
         popupImageCaptionElement.textContent = item.name;
         openPopup(popupImageContainer);
+        closePopupByClickOnEsc(popupImageContainer);
+        closePopupByClickOnOverlay(popupImageContainer);
     });
     return cardElement;
 }
 
-const renderCardElement = (item) => {
-    elementsContainer.prepend(createCardElement(item));
-}
+const renderCardElement = (item, position) => {
+    switch (position) {
+        case 'prepend': elementsContainer.prepend(createCardElement(item));
+            break;
+        case 'append': elementsContainer.append(createCardElement(item));
+            break;
+        default: elementsContainer.prepend(createCardElement(item));
+    }
+};
 // открытие и закрытие окна попапа
 
 //функция открытия Popup
@@ -71,6 +81,23 @@ document.querySelectorAll('.popup__close').forEach(button => {
     button.addEventListener('click', () => closePopup(buttonsPopup)); // закрыли попап
 });
 
+// функция закрытия модальных окон при клике на фон и esc
+function closePopupByClickOnOverlay(item) {
+    item.addEventListener('click', function (evt) {
+        if (evt.target === evt.currentTarget) {
+            closePopup(item);
+        }
+    });
+}
+
+function closePopupByClickOnEsc(item) {
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            closePopup(item);
+        }
+    });
+}
+
 function getFormValuesAdd() {
     return {
         name: placeInputElement.value,
@@ -83,28 +110,35 @@ function handleFormSubmit(evt) { //обработчик формы отправ�
     evt.preventDefault();
     setPopupForm();
     closePopup(popupProfileElement);
+
 };
 
 function handleFormSubmitadd(evt) { //обработчик формы отправки
     evt.preventDefault();
     const dataCard = getFormValuesAdd();
-    renderCardElement(dataCard);
+    renderCardElement(dataCard, 'prepend');
     placeInputElement.value = '';
     linkInputElement.value = '';
     closePopup(popupNewCardElement);
 };
 
-initialCards.forEach(renderCardElement);
+initialCards.forEach(renderCardElement, 'append');
 
 profileEditButtonElement.addEventListener('click', function () {
     setFormInput();
     openPopup(popupProfileElement);
+    enableButton(buttonSaveProfileElement, configFormSelector);
+    closePopupByClickOnEsc(popupProfileElement);
+    closePopupByClickOnOverlay(popupProfileElement);
 });
 
-newCardAddButtonElement.addEventListener('click', () =>
-    openPopup(popupNewCardElement));
-
+newCardAddButtonElement.addEventListener('click', () => {
+    openPopup(popupNewCardElement);
+    closePopupByClickOnEsc(popupNewCardElement);
+    closePopupByClickOnOverlay(popupNewCardElement);
+});
 formEditProfileElement.addEventListener('submit', handleFormSubmit);
 formNewCardElement.addEventListener('submit', handleFormSubmitadd);
+
 
 

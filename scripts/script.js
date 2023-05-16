@@ -71,7 +71,6 @@ function openPopup(modal) {
 function closePopup(modal) {
     modal.removeEventListener('keydown', setEventClosePopupKeydown);
     modal.removeEventListener('click', setEventClosePopupClick);
-    modal.querySelector('form').reset();
     modal.classList.remove('popup_opened');
 };
 

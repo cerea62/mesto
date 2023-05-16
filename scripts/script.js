@@ -17,6 +17,7 @@ const cardTemplate = document.querySelector('#card-template').content; //нах�
 const popupImageElement = popupImageContainer.querySelector('.popup__image');
 const popupImageCaptionElement = popupImageContainer.querySelector('.popup__image-caption');
 const buttonSaveProfileElement = popupProfileElement.querySelector('.form__button-save');
+const buttonsClosePopup = document.querySelectorAll('.popup__close');
 
 //создание карточки
 const createCardElement = function (item) {
@@ -78,7 +79,7 @@ function setPopupForm() { //функция заполнения полей в ф
     profileCaptionElement.textContent = jobInputElement.value
 };
 // функция закрытия модальных окон по клику на крестик
-document.querySelectorAll('.popup__close').forEach(button => {
+buttonsClosePopup.forEach(button => {
     const buttonsPopup = button.closest('.popup'); // нашли родителя с нужным классом
     button.addEventListener('click', () => closePopup(buttonsPopup)); // закрыли попап
 });

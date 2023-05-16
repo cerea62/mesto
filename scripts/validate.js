@@ -40,6 +40,7 @@ function checkInputElement(inputElement, formElement, config) {  // функци
     }
 }
 
+
 function setEventLisneter(formElement, config) { // добавляет слушателя на событие submit
     const inputsList = formElement.querySelectorAll(config.inputSelector);
     const submitButtonElement = formElement.querySelector(config.submitButtonSelector);

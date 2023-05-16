@@ -1,4 +1,6 @@
 .form__error {
+    position: absolute;
+    z-index: 3;
     color: #FF0000;
     font-style: normal;
     font-weight: 400;

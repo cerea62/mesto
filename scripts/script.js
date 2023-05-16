@@ -39,8 +39,6 @@ const createCardElement = function (item) {
         popupImageElement.alt = item.name;
         popupImageCaptionElement.textContent = item.name;
         openPopup(popupImageContainer);
-        closePopupByClickOnEsc(popupImageContainer);
-        closePopupByClickOnOverlay(popupImageContainer);
     });
     return cardElement;
 }
@@ -59,6 +57,8 @@ const renderCardElement = (item, position) => {
 //функция открытия Popup
 function openPopup(modal) {
     modal.classList.add('popup_opened');
+    closePopupByClickOnEsc(modal);
+    closePopupByClickOnOverlay(modal);
 };
 
 //функция закрытия Popup
@@ -120,14 +120,14 @@ function getFormValuesAdd() {
 
 };
 
-function handleFormSubmit(evt) { //обработчик формы отправки
+function submitEditProfileForm(evt) { //обработчик формы отправки
     evt.preventDefault();
     setPopupForm();
     closePopup(popupProfileElement);
 
 };
 
-function handleFormSubmitadd(evt) { //обработчик формы отправки
+function submitNewCardForm(evt) { //обработчик формы отправки
     evt.preventDefault();
     const dataCard = getFormValuesAdd();
     renderCardElement(dataCard, 'prepend');
@@ -142,17 +142,15 @@ profileEditButtonElement.addEventListener('click', function () {
     setFormInput();
     openPopup(popupProfileElement);
     enableButton(buttonSaveProfileElement, configFormSelector);
-    closePopupByClickOnEsc(popupProfileElement);
-    closePopupByClickOnOverlay(popupProfileElement);
+
 });
 
 newCardAddButtonElement.addEventListener('click', () => {
     openPopup(popupNewCardElement);
-    closePopupByClickOnEsc(popupNewCardElement);
-    closePopupByClickOnOverlay(popupNewCardElement);
+
 });
-formEditProfileElement.addEventListener('submit', handleFormSubmit);
-formNewCardElement.addEventListener('submit', handleFormSubmitadd);
+formEditProfileElement.addEventListener('submit', submitEditProfileForm);
+formNewCardElement.addEventListener('submit', submitNewCardForm);
 
 
 

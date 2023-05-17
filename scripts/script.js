@@ -19,8 +19,6 @@ const popupImageCaptionElement = popupImageContainer.querySelector('.popup__imag
 const buttonSaveProfileElement = popupProfileElement.querySelector('.form__button-save');
 const buttonSaveNewCardElement = popupNewCardElement.querySelector('.form__button-save');
 const buttonsClosePopup = document.querySelectorAll('.popup__close');
-const errorsList = document.querySelectorAll('.form__error');
-const inputsList = document.querySelectorAll('.form__field');
 
 //создание карточки
 const createCardElement = function (item) {
@@ -38,7 +36,7 @@ const createCardElement = function (item) {
         evt.target.classList.toggle('card__icon_active');
     });
     // открыть изображение
-    cardElement.querySelector('.card__image').addEventListener('click', function (evt) {
+    cardElement.querySelector('.card__image').addEventListener('click', function () {
         popupImageElement.src = item.link;
         popupImageElement.alt = item.name;
         popupImageCaptionElement.textContent = item.name;
@@ -128,7 +126,7 @@ function submitNewCardForm(evt) { //обработчик формы отправ
 
 initialCards.forEach(renderCardElement, 'append');
 
-profileEditButtonElement.addEventListener('click', function (e) {
+profileEditButtonElement.addEventListener('click', function () {
     resetError(formEditProfileElement, configFormSelector);
     setFormInput();
     popupProfileElement.addEventListener('click', closePopupByClickOnOverlay);

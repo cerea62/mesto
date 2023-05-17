@@ -40,6 +40,15 @@ function checkInputElement(inputElement, formElement, config) {  // функци
     }
 }
 
+function resetError(formElement, config) {
+    const inputsList = formElement.querySelectorAll(config.inputSelector);
+    [...inputsList].forEach((inputElement) => {
+        const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
+        inputElement.classList.remove(config.errorInputClass);
+        errorElement.textContent = '';
+        formElement.reset();
+    })
+}
 
 function setEventLisneter(formElement, config) { // добавляет слушателя на событие submit
     const inputsList = formElement.querySelectorAll(config.inputSelector);

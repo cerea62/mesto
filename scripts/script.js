@@ -42,6 +42,7 @@ const createCardElement = function (item) {
         popupImageElement.src = item.link;
         popupImageElement.alt = item.name;
         popupImageCaptionElement.textContent = item.name;
+        popupImageContainer.addEventListener('click', closePopupByClickOnOverlay);
         openPopup(popupImageContainer);
     });
     return cardElement;
@@ -61,17 +62,14 @@ const renderCardElement = (item, position) => {
 //функция открытия Popup
 function openPopup(modal) {
     modal.classList.add('popup_opened');
-    closePopupByClickOnEsc(modal);
-    closePopupByClickOnOverlay(modal);
-    resetError();
+    document.addEventListener('keydown', closePopupByClickOnEsc);
 
 };
 
 //функция закрытия Popup
 function closePopup(modal) {
-    modal.removeEventListener('keydown', setEventClosePopupKeydown);
-    modal.removeEventListener('click', setEventClosePopupClick);
     modal.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByClickOnEsc);
 };
 
 function setFormInput() { //функция заполнения инпутов 
@@ -84,44 +82,25 @@ function setPopupForm() { //функция заполнения полей в ф
     profileCaptionElement.textContent = jobInputElement.value
 };
 
-function resetError() {  //функция сброса ошибок при открытии формы
-    errorsList.forEach(evt => {
-        evt.textContent = '';
-    })
-    inputsList.forEach(evt => {
-        evt.classList.remove('form__field_status_invalid');
-    })
-}
 // функция закрытия модальных окон по клику на крестик
 buttonsClosePopup.forEach(button => {
     const buttonsPopup = button.closest('.popup'); // нашли родителя с нужным классом
     button.addEventListener('click', () => closePopup(buttonsPopup)); // закрыли попап
 });
 
-// функция закрытия модальных окон при клике на фон
-function closePopupByClickOnOverlay(item) {
-    item.addEventListener('click', function (e) {
-        setEventClosePopupClick(e, item);
-    });
-}
 // функция закрытия модальных окон при нажатии esc
-function closePopupByClickOnEsc(item) {
-    document.addEventListener('keydown', function (e) {
-        setEventClosePopupKeydown(e, item);
-    });
+const closePopupByClickOnEsc = (evt) => {
+    if (evt.key === 'Escape') {
+        evt.preventDefault();
+        const popupIsActive = document.querySelector('.popup_opened');
+        closePopup(popupIsActive);
+    };
 }
 
-// Устанавливает событие для закрытия popup при клике на фон
-function setEventClosePopupClick(e, item) {
-    if (e.target === e.currentTarget) {
-        closePopup(item);
-    }
-}
-
-// Устанавливает событие для закрытия popup при нажатии клафиши esc
-function setEventClosePopupKeydown(e, item) {
-    if (e.key === 'Escape') {
-        closePopup(item);
+const closePopupByClickOnOverlay = (evt) => {
+    if (evt.target === evt.currentTarget) {
+        const popupIsActive = document.querySelector('.popup_opened');
+        closePopup(popupIsActive);
     }
 }
 
@@ -150,12 +129,16 @@ function submitNewCardForm(evt) { //обработчик формы отправ
 initialCards.forEach(renderCardElement, 'append');
 
 profileEditButtonElement.addEventListener('click', function (e) {
+    resetError(formEditProfileElement, configFormSelector);
     setFormInput();
+    popupProfileElement.addEventListener('click', closePopupByClickOnOverlay);
     openPopup(popupProfileElement);
     enableButton(buttonSaveProfileElement, configFormSelector);
 });
 
 newCardAddButtonElement.addEventListener('click', () => {
+    resetError(formNewCardElement, configFormSelector);
+    popupNewCardElement.addEventListener('click', closePopupByClickOnOverlay);
     openPopup(popupNewCardElement);
     disabledButton(buttonSaveNewCardElement, configFormSelector);
 });

@@ -9,12 +9,12 @@ function hideError(inputElement, errorElement, config) {  //функция, ко
     errorElement.textContent = inputElement.validationMessage;
 }
 
-function disabledButton(buttonElement, config) { //функция, которая делает кнопку неактивной
+export function disabledButton(buttonElement, config) { //функция, которая делает кнопку неактивной
     buttonElement.disabled = 'disabled';
     buttonElement.classList.add(config.disableButtonClass);
 }
 
-function enableButton(buttonElement, config) { //функция для активной кнопки
+export function enableButton(buttonElement, config) { //функция для активной кнопки
     buttonElement.disabled = false;
     buttonElement.classList.remove(config.disableButtonClass);
 }
@@ -40,7 +40,7 @@ function checkInputElement(inputElement, formElement, config) {  // функци
     }
 }
 
-function resetError(formElement, config) {
+export function resetError(formElement, config) {
     const inputsList = formElement.querySelectorAll(config.inputSelector);
     [...inputsList].forEach((inputElement) => {
         const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
@@ -73,7 +73,7 @@ function enableValidation(config) { //
     });
 }
 
-const configFormSelector = {
+export const configFormSelector = {
     formSelector: '.form',
     inputSelector: '.form__field',
     submitButtonSelector: '.form__button-save',

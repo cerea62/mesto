@@ -13,15 +13,14 @@ const linkInputElement = formNewCardElement.querySelector('.form__field_type_lin
 const profileNameElement = document.querySelector('.profile__name');
 const profileCaptionElement = document.querySelector('.profile__caption');
 const elementsContainer = document.querySelector('.elements__items'); //находим контейнер, в который будем класть карточки
-// const cardTemplate = document.querySelector('#card-template').content; //находим шаблон по его id
 const popupImageElement = popupImageContainer.querySelector('.popup__image');
 const popupImageCaptionElement = popupImageContainer.querySelector('.popup__image-caption');
-const buttonSaveProfileElement = popupProfileElement.querySelector('.form__button-save');
-const buttonSaveNewCardElement = popupNewCardElement.querySelector('.form__button-save');
 const buttonsClosePopup = document.querySelectorAll('.popup__close');
 
-import { initialCards, Card } from './card.js'
-import { resetError, configFormSelector, enableButton, disabledButton } from './validate.js';
+import {initialCards } from './arrayOfCards.js';
+import {Card} from './card.js';
+import {configFormSelector} from './validate.js';
+import {FormValidator} from './FormValidator.js';
 
 function handlePopupImage(data) {
     popupImageElement.src = data.link;
@@ -109,21 +108,24 @@ function submitNewCardForm(evt) { //обработчик формы отправ
     closePopup(popupNewCardElement);
 };
 
-
+const newProfileValidation = new FormValidator(configFormSelector, formEditProfileElement);
+const newCardValidation =  new FormValidator(configFormSelector, formNewCardElement);
 
 profileEditButtonElement.addEventListener('click', function () {
-    resetError(formEditProfileElement, configFormSelector);
+    newProfileValidation.resetError();
+    newProfileValidation.enableValidation();
+    newProfileValidation.enableButton();
     setFormInput();
     popupProfileElement.addEventListener('click', closePopupByClickOnOverlay);
     openPopup(popupProfileElement);
-    enableButton(buttonSaveProfileElement, configFormSelector);
 });
 
 newCardAddButtonElement.addEventListener('click', () => {
-    resetError(formNewCardElement, configFormSelector);
+    newCardValidation.resetError();
+    newCardValidation.enableValidation();
+    newCardValidation.disableButton();
     popupNewCardElement.addEventListener('click', closePopupByClickOnOverlay);
     openPopup(popupNewCardElement);
-    disabledButton(buttonSaveNewCardElement, configFormSelector);
 });
 
 formEditProfileElement.addEventListener('submit', submitEditProfileForm);

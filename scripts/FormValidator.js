@@ -63,7 +63,6 @@ export class FormValidator {
         this._inputsList.forEach((inputElement) => {
             const errorElement = this._formElement.querySelector(`#${inputElement.name}-error`);
             this._hideError(inputElement, errorElement);
-            this._formElement.reset();
         })
     }
     enableValidation() {

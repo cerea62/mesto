@@ -20,14 +20,21 @@ export class Card {
         cardImageElement.alt = this._name;
         return this._element;
     }
+    _deleteCard() {          //удаление карточки
+        this._element.remove();
+    }
+    
+    _setLike() {          //установка и удаление сердечка
+        this._buttonLike.classList.toggle('card__icon_active');
+    }
+
     _setEventListeners() {
-        //удаление карточки
         this._element.querySelector('.card__trash').addEventListener('click', () => {
-            this._element.remove();
-        });
-        //установка и удаление сердечка
-        this._element.querySelector('.card__icon').addEventListener('click', function (evt) {
-            evt.target.classList.toggle('card__icon_active');
+            this._deleteCard();
+        })
+        this._buttonLike = this._element.querySelector('.card__icon');
+        this._buttonLike.addEventListener('click', () => {
+            this._setLike();
         });
         //открытие попапа при клике на картинку
         this._element.querySelector('.card__image').addEventListener('click', () => {

@@ -7,18 +7,18 @@
     <meta mame="keywords" content="Места, путешествие, Россия">
     <meta name="author" content="Наталья Кузнецова">
     <title lang="en">Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
+    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
 </head>
 
 <body class="content">
     <div class="page">
         <header class="header">
-            <img class="header__logo" src="./image/logo.svg" alt="Логотип Место">
+            <img class="header__logo" src="<%=require('./image/logo.svg')%>" alt="Логотип Место">
         </header>
         <main class="container">
             <section class="profile">
                 <div class="profile__items">
-                    <img class="profile__avatar" src="./image/cousteau.jpg" alt="Аватар автора">
+                    <img class="profile__avatar" src="<%=require('./image/cousteau.jpg')%>" alt="Аватар автора">
                     <div class="profile__info">
                         <div class="profile__edit">
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -93,7 +93,7 @@
     </div>
     <!-- <script src="./scripts/validate.js" defer></script>
     <script src="./scripts/card.js" defer></script> -->
-    <script src="./pages/index.js" defer type="module"></script>
+    <!-- <script src="./pages/index.js" defer type="module"></script> -->
 
 
 </body>

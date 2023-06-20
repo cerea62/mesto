@@ -1,0 +1,15 @@
+export const popupProfileSelector = '.popup_type_edit-profile';
+export const popupNewCardSelector = '.popup_type_new-card';
+export const popupImageSelector = '.popup_type_image';
+export const popupImageContainer = document.querySelector('.popup_type_image'); //модальное окно с изображением
+export const profileEditButtonElement = document.querySelector('.profile__edit-button'); //кнопка редактирования
+export const newCardAddButtonElement = document.querySelector('.profile__add-button'); //кнопка добавления нового места
+export const formEditProfileElement = document.querySelector('.form_type_edit-profile');
+export const formNewCardElement = document.querySelector('.form_type_new-card');
+export const nameInputElement = formEditProfileElement.querySelector('.form__field_type_name');
+export const jobInputElement = formEditProfileElement.querySelector('.form__field_type_job');
+export const elementsSelector = '.elements__items';
+export const profileNameSelector = '.profile__name';
+export const profileCaptionSelector = '.profile__caption';
+export const popupImageElement = popupImageContainer.querySelector('.popup__image');
+export const popupImageCaptionElement = popupImageContainer.querySelector('.popup__image-caption');

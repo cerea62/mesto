@@ -1,8 +1,6 @@
 import './index.css';
 import {
     elementsSelector,
-    nameInputElement,
-    jobInputElement,
     formEditProfileElement,
     formNewCardElement,
     profileEditButtonElement,
@@ -25,7 +23,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 
 function handlePopupImage(data) {
-    popupImageElement.open(data.name, data.link);
+    popupImageElement.open(data.place, data.link);
 }
 
 function createCard(item, selector, handler) {
@@ -34,19 +32,19 @@ function createCard(item, selector, handler) {
     return cardElement;
 }
 
-const CardsList = new Section({
+const cardsList = new Section({
     items: initialCards,
     renderer: (item) => {
-        CardsList.addItem(createCard(item, '#card-template', handlePopupImage));
+        cardsList.addItem(createCard(item, '#card-template', handlePopupImage));
     }
 },
     elementsSelector);
 
-CardsList.renderItems();
+cardsList.renderItems();
 
 const popupNewCardElement = new PopupWithForm({
     handleFormSubmit: (newCardData) => {
-        CardsList.addItem(createCard(newCardData, '#card-template', handlePopupImage));
+        cardsList.addItem(createCard(newCardData, '#card-template', handlePopupImage));
     },
     popupSelector: popupNewCardSelector
 });
@@ -69,16 +67,12 @@ popupNewCardElement.setEventListeners();
 popupImageElement.setEventListeners();
 popupProfileElement.setEventListeners();
 
-function setProfileInputs() {
-    const userData = userInfo.getUserInfo();
-    nameInputElement.value = userData.name;
-    jobInputElement.value = userData.caption;
-}
 profileEditButtonElement.addEventListener('click', function () {
     newProfileValidation.resetError();
     formEditProfileElement.reset();
     newProfileValidation.enableButton();
-    setProfileInputs();
+    const userData = userInfo.getUserInfo();
+    popupProfileElement.setInputValues(userData);
     popupProfileElement.open();
 });
 

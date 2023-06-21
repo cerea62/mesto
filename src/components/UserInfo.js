@@ -6,7 +6,7 @@ export default class UserInfo {
     getUserInfo() {
         return {
             name: this._profileNameElement.textContent,
-            caption: this._profileCaptionElement.textContent,
+            job: this._profileCaptionElement.textContent,
         }
     }
     setUserInfo(dataJob) {

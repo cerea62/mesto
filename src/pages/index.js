@@ -9,7 +9,9 @@ import {
     popupNewCardSelector,
     popupImageSelector,
     profileNameSelector,
-    profileCaptionSelector
+    profileCaptionSelector,
+    popupImgElement,
+    popupImageCaptionElement
 } from '../utils/constants.js';
 import {
     initialCards,
@@ -60,7 +62,7 @@ const popupProfileElement = new PopupWithForm({
     popupSelector: popupProfileSelector
 });
 
-const popupImageElement = new PopupWithImage(popupImageSelector);
+const popupImageElement = new PopupWithImage(popupImageSelector, popupImgElement, popupImageCaptionElement);
 
 // Устанавливаем слушателей один раз для каждого экземпляра класса
 popupNewCardElement.setEventListeners();

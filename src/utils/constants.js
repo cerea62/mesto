@@ -9,5 +9,5 @@ export const formNewCardElement = document.querySelector('.form_type_new-card');
 export const elementsSelector = '.elements__items';
 export const profileNameSelector = '.profile__name';
 export const profileCaptionSelector = '.profile__caption';
-export const popupImageElement = popupImageContainer.querySelector('.popup__image');
+export const popupImgElement = popupImageContainer.querySelector('.popup__image');
 export const popupImageCaptionElement = popupImageContainer.querySelector('.popup__image-caption');

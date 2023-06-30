@@ -18,7 +18,10 @@
         <main class="container">
             <section class="profile">
                 <div class="profile__items">
-                    <img class="profile__avatar" src="<%=require('./image/cousteau.jpg')%>" alt="Аватар автора">
+                    <div class="profile__avatar">
+                        <img class="profile__img-avatar" src="<%=require('./image/cousteau.jpg')%>" alt="Аватар автора">
+                        <button type="button" class="profile__edit-avatar"></button>
+                    </div>
                     <div class="profile__info">
                         <div class="profile__edit">
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -57,10 +60,10 @@
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="form form_type_edit-profile" name="form-popup" novalidate>
                     <input type="text" name="name" class="form__field form__field_type_name" placeholder="Имя"
-                    minlength="2" max="40" required>
+                        minlength="2" max="40" required>
                     <span id="name-error" class="form__error"></span>
                     <input type="text" name="job" class="form__field form__field_type_job" placeholder="О себе"
-                    minlength="2" maxlength="200" required>
+                        minlength="2" maxlength="200" required>
                     <span id="job-error" class="form__error"></span>
                     <button type="submit" class="form__button-save">Сохранить</button>
                 </form>
@@ -72,11 +75,11 @@
                 <h2 class="popup__title">Новое место</h2>
                 <form class="form form_type_new-card" name="form-popup" novalidate>
                     <input type="text" placeholder="Название" name="place" class="form__field form__field_type_place"
-                    minlength="2" maxlength="30" required>
+                        minlength="2" maxlength="30" required>
                     <span id="place-error" class="form__error"></span>
                     <input type="url" src="" placeholder="Ссылка на картинку" name="link"
                         class="form__field form__field_type_link" required>
-                        <span id="link-error" class="form__error"></span>
+                    <span id="link-error" class="form__error"></span>
                     <button type="submit" class="form__button-save">Сохранить</button>
                 </form>
             </div>
@@ -88,6 +91,25 @@
                     <img class="popup__image" src="#" alt="#">
                     <figcaption class="popup__image-caption"></figcaption>
                 </figure>
+            </div>
+        </div>
+        <div class="popup popup_type_del-card">
+            <div class="popup__container">
+                <button type="button" class="popup__close"></button>
+                <h2 class="popup__title">Вы уверены?</h2>
+                <button type="submit" class="form__button-save">Да</button>
+            </div>
+        </div>
+        <div class="popup popup_type_update-avatar">
+            <div class="popup__container">
+                <button type="button" class="popup__close"></button>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <form class="form form_type_update-avatar" name="form-popup" novalidate>
+                    <input type="url" src="" placeholder="Ссылка на новый аватар" name="avatar"
+                        class="form__field form__field_type_avatar" required>
+                    <span id="avatar-error" class="form__error"></span>
+                    <button type="submit" class="form__button-save">Сохранить</button>
+                </form>
             </div>
         </div>
     </div>

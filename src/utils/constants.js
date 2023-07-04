@@ -16,10 +16,10 @@ export const profileAvatarSelector = '.profile__img-avatar'
 export const popupImgElement = popupImageContainer.querySelector('.popup__image');
 export const popupImageCaptionElement = popupImageContainer.querySelector('.popup__image-caption');
 
-export const configApi = {
-    url: 'https://mesto.nomoreparties.co/',
+export const apiConfig = {
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-70',
     headers: {
-        'Content-Type': 'application/json',
-        authorization: '881e0966-bc42-4e12-bb34-8b207989d519'
+        authorization: '881e0966-bc42-4e12-bb34-8b207989d519',
+        'Content-Type': 'application/json'
     }
-  };
+}

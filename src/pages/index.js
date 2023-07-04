@@ -16,7 +16,7 @@ import {
     profileAvatarSelector,
     popupImgElement,
     popupImageCaptionElement,
-    configApi
+    apiConfig
 } from '../utils/constants.js';
 import {
     initialCards,
@@ -33,19 +33,11 @@ import Api from '../components/Api.js';
 
 // Создаем экземпляр класса UserInfo, передаем в конструктор объект с именами селекторов
 const userInfo = new UserInfo({ profileNameSelector, profileCaptionSelector, profileAvatarSelector });
-const api = new Api(configApi);
-
+const api = new Api(apiConfig);
+let userId;
 api.getCards()
     .then((res) => {
-        const cardsList = new Section({
-            items: res,
-            renderer: (item) => {
-                cardsList.addItem(createCard(item, '#card-template', handlePopupImage));
-            }
-        },
-            elementsSelector);
-
-        cardsList.renderItems();
+        cardsList.renderItems(res);
     }
     )
 
@@ -53,15 +45,85 @@ api.getUserInfo()
     .then((info) => {
         userInfo.setUserInfo(info);
         userInfo.setAvatar(info);
+        userId = info._id;
     })
+
+const cardsList = new Section({
+    renderer: (item) => {
+        cardsList.addItem(createCard(item, handlePopupImage, '#card-template'));
+    }
+},
+    elementsSelector);
 
 function handlePopupImage(data) {
     popupImageElement.open(data.name, data.link);
 }
+// function createCard(item, selector, handler) {
+
+//     const card = new Card({
+//         data: item,
+//         currentUserId: currentUserId,
+//         templateSelector: selector,
+//         handlePopupImage: handler,
+//         handleDeleteCard: (cardId) =>
+//         //{
+//         //deleteCardPopup.open();
+//         //deleteCardPopup.submitCallback(() => 
+//         {
+//             api.deleteCard(cardId)
+//                 .then(() => {
+//                     // deleteCardPopup.close();
+//                     card.deleteCard();
+//                 })
+//                 .catch((err) => {
+//                     console.log(`Ошибка уданения карточки: ${err}`);
+//                 });
+//         },
+//         handleSetLike: (cardId) => {
+//             api.setLike(cardId)
+//                 .then((dataCard) => {
+//                     card.setLike(dataCard)
+//                 })
+//                 .catch((err) => {
+//                     console.log(`Ошибка установки лайка: ${err}`);
+//                 })
+//         },
+//         handleRemoveLike: (cardId) => {
+//             api.removeLike(cardId)
+//                 .then((dataCard) =>
+//                     card.setLike(dataCard)
+//                 )
+//                 .catch((err) => {
+//                     console.log(`Ошибка снятия лайка: ${err}`);
+//                 })
+//         }
+//     });
+// }
 
 function createCard(item, handler, selector) {
 
-    const card = new Card(item, handler, selector);
+    const card = new Card({
+        data: item,
+        userId: userId,
+        templateSelector: selector,
+        handlePopupImage: handler,
+        handleDeleteCard: (cardID) => {
+            api.deleteCard(cardID)
+                .then((cardID) => {
+                    card.deleteCard(cardID)
+                })
+                .catch((err) => {
+                    console.log(`Ошибка удаления карточки: ${err}`);
+                });
+        },
+        // handleIsLiked(cardID) {
+        //     api.setLike(cardID)
+        //       .then((cardID) => {
+        //         card.setLike(cardID)
+        //       })
+        // }
+    });
+
 
     const cardElement = card.generateCard();
     return cardElement;
@@ -80,7 +142,10 @@ function createCard(item, handler, selector) {
 // попап редактирования карточек
 const popupNewCardElement = new PopupWithForm({
     handleFormSubmit: (newCardData) => {
-        cardsList.addItem(createCard(newCardData, '#card-template', handlePopupImage));
+        api.addCard(newCardData)
+            .then((newCardData) => {
+                cardsList.addItem(createCard(newCardData, handlePopupImage, '#card-template'));
+            })
     },
     popupSelector: popupNewCardSelector
 });

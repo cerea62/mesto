@@ -40,7 +40,8 @@ export class FormValidator {
 
     _checkInputElement(inputElement) {
         const isInputValid = inputElement.validity.valid;
-        const errorElement = this._formElement.querySelector(`#${inputElement.name}-error`);
+        const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
+        console.log(errorElement);
         if (!errorElement) return;
         if (!isInputValid) {
             this._showError(inputElement, errorElement);
@@ -61,7 +62,7 @@ export class FormValidator {
     }
     resetError() {
         this._inputsList.forEach((inputElement) => {
-            const errorElement = this._formElement.querySelector(`#${inputElement.name}-error`);
+            const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
             this._hideError(inputElement, errorElement);
         })
     }

@@ -18,7 +18,7 @@
             <section class="profile">
                 <div class="profile__items">
                     <div class="profile__avatar">
-                        <img class="profile__img-avatar" src="" alt="Аватар автора">
+                        <img class="profile__img-avatar" src="<%=require('../src/image/cousteau.jpg')%>" alt="Аватар автора">
                         <button type="button" class="profile__edit-avatar"></button>
                     </div>
                     <div class="profile__info">
@@ -61,10 +61,10 @@
                 <button type="button" class="popup__close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="form form_type_edit-profile" name="form-popup" novalidate>
-                    <input type="text" name="name" class="form__field form__field_type_name" placeholder="Имя"
+                    <input type="text" name="name" id="name" class="form__field form__field_type_name" placeholder="Имя"
                         minlength="2" max="40" required>
                     <span id="name-error" class="form__error"></span>
-                    <input type="text" name="about" class="form__field form__field_type_about" placeholder="О себе"
+                    <input type="text" name="about" id="about" class="form__field form__field_type_about" placeholder="О себе"
                         minlength="2" maxlength="200" required>
                     <span id="about-error" class="form__error"></span>
                     <button type="submit" class="form__button-save">Сохранить</button>
@@ -76,10 +76,10 @@
                 <button type="button" class="popup__close"></button>
                 <h2 class="popup__title">Новое место</h2>
                 <form class="form form_type_new-card" name="form-popup" novalidate>
-                    <input type="text" placeholder="Название" name="name" class="form__field form__field_type_place"
+                    <input type="text" placeholder="Название" name="name" id="place" class="form__field form__field_type_place"
                         minlength="2" maxlength="30" required>
-                    <span id="name-error" class="form__error"></span>
-                    <input type="url" src="" placeholder="Ссылка на картинку" name="link"
+                    <span id="place-error" class="form__error"></span>
+                    <input type="url" src="" placeholder="Ссылка на картинку" name="link" id="link"
                         class="form__field form__field_type_link" required>
                     <span id="link-error" class="form__error"></span>
                     <button type="submit" class="form__button-save">Сохранить</button>
@@ -109,7 +109,7 @@
                 <button type="button" class="popup__close"></button>
                 <h2 class="popup__title">Обновить аватар</h2>
                 <form class="form form_type_update-avatar" name="form-popup" novalidate>
-                    <input type="url" src="" placeholder="Ссылка на новый аватар" name="avatar"
+                    <input type="url" src="" placeholder="Ссылка на новый аватар" name="avatar" id="avatar"
                         class="form__field form__field_type_avatar" required>
                     <span id="avatar-error" class="form__error"></span>
                     <button type="submit" class="form__button-save">Сохранить</button>

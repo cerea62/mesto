@@ -1,6 +1,7 @@
 export const popupProfileSelector = '.popup_type_edit-profile';
 export const popupNewCardSelector = '.popup_type_new-card';
 export const popupImageSelector = '.popup_type_image';
+export const popupConfirmationSelector = '.popup_type_del-card'
 export const popupUpdateAvatarSelector = '.popup_type_update-avatar';
 export const popupImageContainer = document.querySelector('.popup_type_image'); //модальное окно с изображением
 export const profileEditButtonElement = document.querySelector('.profile__edit-button'); //кнопка редактирования

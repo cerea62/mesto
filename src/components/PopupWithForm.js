@@ -24,9 +24,18 @@ export default class PopupWithForm extends Popup {
     }
     setInputValues(data) {
         this._inputList.forEach((input) => {
-        input.value = data[input.name];
+            input.value = data[input.name];
         });
-      }
+    }
+
+    setSavingStatus(status) {
+        if (status) {
+            this._submitButton.textContent = "Сохранение..."
+        }
+        else {
+            this._submitButton.textContent = "Сохранить"
+        }
+    }
 
     setEventListeners() {
         super.setEventListeners();

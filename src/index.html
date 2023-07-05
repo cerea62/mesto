@@ -7,7 +7,6 @@
     <meta mame="keywords" content="Места, путешествие, Россия">
     <meta name="author" content="Наталья Кузнецова">
     <title lang="en">Mesto</title>
-    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
 </head>
 
 <body class="content">
@@ -19,7 +18,7 @@
             <section class="profile">
                 <div class="profile__items">
                     <div class="profile__avatar">
-                        <img class="profile__img-avatar" src="<%=require('./image/cousteau.jpg')%>" alt="Аватар автора">
+                        <img class="profile__img-avatar" src="" alt="Аватар автора">
                         <button type="button" class="profile__edit-avatar"></button>
                     </div>
                     <div class="profile__info">
@@ -49,8 +48,11 @@
                 <img class="card__image" src="#" alt="#">
                 <div class="card__caption">
                     <h2 class="card__title"></h2>
-                    <button type="button" class="card__icon" aria-label="Иконка-сердечко"
-                        title="Добавить в избранное"></button>
+                    <div class="card__like">
+                        <button type="button" class="card__icon" aria-label="Иконка-сердечко"
+                            title="Добавить в избранное"></button>
+                        <span class="card__like-counter"></span>
+                    </div>
                 </div>
             </li>
         </template>
@@ -97,7 +99,9 @@
             <div class="popup__container">
                 <button type="button" class="popup__close"></button>
                 <h2 class="popup__title">Вы уверены?</h2>
-                <button type="submit" class="form__button-save">Да</button>
+                <form class="form">
+                    <button type="submit" class="form__button-save">Да</button>
+                </form>
             </div>
         </div>
         <div class="popup popup_type_update-avatar">
@@ -113,10 +117,6 @@
             </div>
         </div>
     </div>
-    <!-- <script src="./scripts/validate.js" defer></script>
-    <script src="./scripts/card.js" defer></script> -->
-    <!-- <script src="./pages/index.js" defer type="module"></script> -->
-
 
 </body>
 

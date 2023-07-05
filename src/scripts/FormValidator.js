@@ -41,7 +41,6 @@ export class FormValidator {
     _checkInputElement(inputElement) {
         const isInputValid = inputElement.validity.valid;
         const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
-        console.log(errorElement);
         if (!errorElement) return;
         if (!isInputValid) {
             this._showError(inputElement, errorElement);

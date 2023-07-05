@@ -58,7 +58,6 @@ export default class Card {
     setLike(dataCard) {
         this._likes = dataCard.likes;
         this._likeCounter.textContent = this._likes.length;
-        console.log(this._likes);
         this._buttonLike.classList.toggle('card__icon_active');
     }
 

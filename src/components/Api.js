@@ -1,11 +1,12 @@
-const handleResponse = res => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Ошибка: ${res.status}`);
-}
 
 export default class Api {
+  #handleResponse = res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+  
   constructor(config) {
     this._baseUrl = config.baseUrl;
     this._headers = config.headers;
@@ -19,13 +20,13 @@ export default class Api {
       }),
       headers: this._headers
     })
-      .then(handleResponse)
+      .then(this.#handleResponse)
   }
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-      .then(handleResponse)
+      .then(this.#handleResponse)
   }
 
   editAvatar(data) {
@@ -36,14 +37,14 @@ export default class Api {
       }),
       headers: this._headers
     })
-      .then(handleResponse)
+      .then(this.#handleResponse)
   }
 
   getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-      .then(handleResponse);
+      .then(this.#handleResponse);
   }
 
   addCard(data) {
@@ -55,7 +56,7 @@ export default class Api {
         link: data.link
       })
     })
-      .then(handleResponse);
+      .then(this.#handleResponse);
   }
 
   deleteCard(cardId) {
@@ -63,7 +64,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(handleResponse);
+      .then(this.#handleResponse);
   }
   
   changeLike(cardId, isLiked) {
@@ -71,6 +72,6 @@ export default class Api {
       method: isLiked ? 'DELETE' : 'PUT',
       headers: this._headers
     })
-      .then(handleResponse);
+      .then(this.#handleResponse);
   }
 }

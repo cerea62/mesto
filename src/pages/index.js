@@ -15,8 +15,6 @@ import {
     profileNameSelector,
     profileCaptionSelector,
     profileAvatarSelector,
-    popupImgElement,
-    popupImageCaptionElement,
     apiConfig
 } from '../utils/constants.js';
 import { configFormSelector } from '../utils/elements.js'
@@ -50,6 +48,7 @@ const popupNewCardElement = new PopupWithForm({
         api.addCard(newCardData)
             .then((newCardData) => {
                 cardsList.addItem(createCard(newCardData, handlePopupImage, '#card-template'));
+                popupNewCardElement.close();
             })
             .catch((err) => {
                 console.log(`Ошибка добавления карточки: ${err}`);
@@ -68,7 +67,8 @@ const popupUpdateAvatarElement = new PopupWithForm({
         popupUpdateAvatarElement.setSavingStatus(true);
         api.editAvatar(avatar)
             .then((avatar) => {
-                userInfo.setAvatar(avatar)
+                userInfo.setAvatar(avatar);
+                popupUpdateAvatarElement.close();
             })
             .catch((err) => {
                 console.log(`Ошибка редактирования аватарки: ${err}`);
@@ -85,7 +85,7 @@ const popupUpdateAvatarElement = new PopupWithForm({
 const popupConfirmationElement = new PopupWithConfirmation(popupConfirmationSelector);
 
 // попап с картинкой
-const popupImageElement = new PopupWithImage(popupImageSelector, popupImgElement, popupImageCaptionElement);
+const popupImageElement = new PopupWithImage(popupImageSelector);
 
 // попап редактирования профиля
 const popupProfileElement = new PopupWithForm({
@@ -93,7 +93,9 @@ const popupProfileElement = new PopupWithForm({
         popupProfileElement.setSavingStatus(true);
         api.editUserInfo(profileData)
             .then((profileData) => {
-                userInfo.setUserInfo(profileData)
+                userInfo.setUserInfo(profileData);
+                popupProfileElement.close();
+
             })
             .catch((err) => {
                 console.log(`Ошибка редактирования профиля: ${err}`);
@@ -107,19 +109,16 @@ const popupProfileElement = new PopupWithForm({
 });
 
 let userId = null;
-
-api.getCards()
-    .then((res) => {
-        cardsList.renderItems(res.reverse());
-    }
-    )
-
-api.getUserInfo()
-    .then((info) => {
-        userInfo.setUserInfo(info);
-        userInfo.setAvatar(info);
-        userId = info._id;
+Promise.all([api.getCards(), api.getUserInfo()])
+    .then(([cardsData, userData]) => {
+        userInfo.setUserInfo(userData);
+        userInfo.setAvatar(userData);
+        userId = userData._id;
+        cardsList.renderItems(cardsData.reverse());
     })
+    .catch((err) => {
+        console.log(`Ошибка получения данных: ${err}`);
+    });
 
 function handlePopupImage(data) {
     popupImageElement.open(data.name, data.link);
@@ -150,6 +149,9 @@ function createCard(item, handler, selector) {
                 .then((data) => {
                     card.setLike(data);
                 })
+                .catch((err) => {
+                    console.log(`Ошибка при изменении лайка: ${err}`);
+                });
         }
     });
     const cardElement = card.generateCard();

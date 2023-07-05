@@ -13,9 +13,7 @@ export const formEditAvatarElement = document.querySelector('.form_type_update-a
 export const elementsSelector = '.elements__items';
 export const profileNameSelector = '.profile__name';
 export const profileCaptionSelector = '.profile__caption';
-export const profileAvatarSelector = '.profile__img-avatar'
-export const popupImgElement = popupImageContainer.querySelector('.popup__image');
-export const popupImageCaptionElement = popupImageContainer.querySelector('.popup__image-caption');
+export const profileAvatarSelector = '.profile__img-avatar';
 
 export const apiConfig = {
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-70',
